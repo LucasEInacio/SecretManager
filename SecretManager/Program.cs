@@ -6,10 +6,14 @@ Console.WriteLine("Hello, World!");
 
 // Access secrets
 string connectionString = new SecretManager().GetSecret("ConnectionStrings:MyDatabase");
-var appName = System.Configuration.ConfigurationManager.ConnectionStrings["MyDatabase1"].ConnectionString;
+var connectionString1 = System.Configuration.ConfigurationManager.ConnectionStrings["MyDatabase1"].ConnectionString;
+
+string apiKey = new SecretManager().GetSecret("APIKey");
 
 Console.WriteLine(connectionString);
-Console.WriteLine(appName);
+Console.WriteLine(connectionString1);
+
+Console.WriteLine(apiKey);
 
 
 public class SecretManager
