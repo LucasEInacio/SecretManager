@@ -8,7 +8,16 @@ Console.WriteLine("Hello, World!");
 string connectionString = new SecretManager().GetSecret("ConnectionStrings:MyDatabase");
 var connectionString1 = System.Configuration.ConfigurationManager.ConnectionStrings["MyDatabase1"].ConnectionString;
 
+
+#if DEBUG
+string connectionStrings = new SecretManager().GetSecret("ConnectionStrings:MyDatabase");
+#else
+var connectionStrings = Environment.GetEnvironmentVariable("OneDrive");
+#endif
+
 string apiKey = new SecretManager().GetSecret("APIKey");
+string environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT") ?? "Production";
+
 
 Console.WriteLine(connectionString);
 Console.WriteLine(connectionString1);
